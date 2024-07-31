@@ -2,16 +2,21 @@ import os
 import re
 
 def remove_chords(content):
+    # Patrón para identificar acordes (incluyendo bemoles y sostenidos)
+    chord_pattern = r'\b[A-G](#|b|m|dim|aug|maj|min|sus|bm|add)?[0-9]?(?:\s|$)'
+    
     # Dividir el contenido en líneas
     lines = content.split('\n')
-    
-    # Patrón para identificar acordes (letras mayúsculas seguidas opcionalmente por # o m)
-    chord_pattern = r'\b[A-G](#|m)?(?:\s|$)'
     
     # Lista para almacenar las líneas sin acordes
     cleaned_lines = []
     
     for line in lines:
+        # Si la línea está vacía, la mantenemos para preservar los espacios entre párrafos
+        if not line.strip():
+            cleaned_lines.append(line)
+            continue
+        
         # Si la línea contiene solo acordes, la omitimos
         if re.match(f'^({chord_pattern}\\s*)+$', line.strip()):
             continue
