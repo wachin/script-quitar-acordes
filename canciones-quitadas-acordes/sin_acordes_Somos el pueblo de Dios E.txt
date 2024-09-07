@@ -1,11 +1,10 @@
 Somos el pueblo de Dios
 Marcos Witt
 Intro
-E, A, E,
+
 Somos el pueblo de Dios
-C#m
+
 somos un pueblo especial
-F#m
 llamados para anunciar
 las virtudes de aquel
 que nos llamo a su luz
@@ -17,12 +16,10 @@ para darnos poder
 y ser testigos de el
 
 y llevaremos su gloria
-C#m
 a cada pueblo y nación
 Trayéndoles esperanza
 y nuevas de salvación
 y su amor nos impulsa
-C#m
 no nos podemos callar
 anunciaremos al mundo
 de amor y verdad
