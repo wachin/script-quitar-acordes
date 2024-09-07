@@ -4,6 +4,23 @@ Script en python para quitar acordes de guitarra de varios archivos de texto que
 **REQUERIMIENTOS**
 python
 
+**USO**
+EL programa no tiene insterfaz gráfica, solo se usa desde terminal así:
+
+```
+python3 remove_chords.py
+```
+
+y automáticamente todo lo que está en la carpeta:
+
+canciones-a-quitar-acordes
+
+se copiará a la carpeta:
+
+canciones-quitadas-acordes
+
+pero sin acordes.
+
 **PROBADO EN:**
 Debian 12
 
