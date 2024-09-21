@@ -3,7 +3,7 @@ import re
 
 def remove_chords(content):
     # Patrón para identificar acordes (incluyendo bemoles y sostenidos)
-    chord_pattern = r'\b[A-G](#|b|m|dim|aug|maj|min|sus|bm|F#m|add)?[0-9]?(?:\s|$)'
+    chord_pattern = r'\b[A-G](#|b|m|dim|aug|maj|min|sus|bm|F#m|C#m|add)?[0-9]?(?:\s|$)'
     
     # Dividir el contenido en líneas
     lines = content.split('\n')
