@@ -1,92 +1,74 @@
+
 # script-quitar-acordes
-Script en python para quitar acordes de guitarra de varios archivos de texto que estén en una carpeta
 
-**REQUERIMIENTOS**
-python
+Script en Python para quitar acordes de guitarra de varios archivos de texto que estén en una carpeta.
 
-**USO**
-EL programa no tiene insterfaz gráfica, solo se usa desde terminal así:
+## Requerimientos
+
+- Python 3.x
+
+## Uso
+
+El programa se ejecuta desde la terminal de la siguiente manera:
 
 ```
 python3 remove_chords.py
-```
-
-y automáticamente todo lo que está en la carpeta:
-
-canciones-a-quitar-acordes
-
-se copiará a la carpeta:
-
-canciones-quitadas-acordes
-
-pero sin acordes.
-
-**PROBADO EN:**
-Debian 12
-
-El siguiente es un ejemplo de lo que hace este script, tengo un archivo de texto en la carpeta:
-
-canciones-a-quitar-acordes/La niña de tus ojos - Daniel Calveti (B).txt
-
-este archivo tiene el siguiente contenido:
-
-```
-La niña de tus ojos
-Daniel Calveti
-B F# Abm E
-B F# Abm E
-
-VERSO I X2
-         B                  F#
-Me viste a mi cuando nadie me vio
-          Abm                E
-Me amaste a mi cuando nadie me amo
-
-VERSO II X2
-            B                F#
-Y me diste nombre yo soy tu niña
-               Abm                    E
-La niña de tus ojos por que me amaste a mí
-
-PRE-CORO X2
-          B               F#
-Me amaste a mí, Me amaste a mí,
-          Abm             E
-Me amaste a mí, Me amaste a mí
-
-CORO X 4
-B                        F#
-Te amo más que a mi vida,
-                         Abm
-te amo más que a mi vida,
-                           E
-Te amo más que a mi vida, más
-
-VERSO II X2
-            B                F#
-Y me diste nombre yo soy tu niña
-               Abm                    E
-La niña de tus ojos por que me amaste a mí
-
-          B
-Me amaste a mí.
-```
-y al abrir una terminal aquí en este repositorio y poner:
-
-```
-python3 remove_chords.py 
 ```
 
 así como se ve en al siguiente imagen:
 
 ![](vx_images/11653823289001.png)
 
-el resultado lo pone en la carpeta:
+No tiene interfaz gráfica. El script procesará automáticamente todos los archivos de texto (.txt) en la carpeta `canciones-a-quitar-acordes` y guardará las versiones sin acordes en la carpeta `canciones-quitadas-acordes`.
 
-canciones-quitadas-acordes/
+## Funcionamiento detallado
 
-lo deja así:
+El script utiliza expresiones regulares para identificar y eliminar los acordes. El patrón utilizado es:
 
+```python
+chord_pattern = r'\b[A-G](#m?|b|m|dim|aug|maj|min|sus|bm|add)?[0-9]?(/[A-G](#|b)?)?(?:\s|$)'
+```
+
+Explicación del patrón:
+
+- `\b`: Indica el inicio de una palabra.
+- `[A-G]`: Coincide con cualquier nota musical (A, B, C, D, E, F, G).
+- `(#m?|b|m|dim|aug|maj|min|sus|bm|add)?`: Coincide opcionalmente con modificadores de acordes:
+  - `#m?`: Sostenido, opcionalmente seguido de 'm' (menor).
+  - `b`: Bemol.
+  - `m`, `dim`, `aug`, `maj`, `min`, `sus`, `add`: Otros modificadores comunes.
+- `[0-9]?`: Coincide opcionalmente con un número (para acordes como C7, G9, etc.).
+- `(/[A-G](#|b)?)?`: Coincide opcionalmente con acordes con bajo específico (como D/F#):
+  - `/`: La barra literal.
+  - `[A-G]`: La nota del bajo.
+  - `(#|b)?`: Sostenido o bemol opcional para la nota del bajo.
+- `(?:\s|$)`: Coincide con un espacio o el final de la línea.
+
+Este patrón permite identificar una amplia variedad de acordes, incluyendo:
+- Acordes mayores y menores (C, Am)
+- Acordes con sostenidos y bemoles (C#, Bb)
+- Acordes con séptimas y otras extensiones (C7, Gmaj7)
+- Acordes con bajo específico (D/F#)
+- Otras variaciones comunes (Csus, Dadd9)
+
+## Ejemplo
+
+Archivo de entrada (`canciones-a-quitar-acordes/La niña de tus ojos - Daniel Calveti (B).txt`):
+
+```
+La niña de tus ojos
+Daniel Calveti
+B F# Abm E
+B F# Abm E
+VERSO I X2
+B F#
+Me viste a mi cuando nadie me vio
+Abm E
+Me amaste a mi cuando nadie me amo
+...
+```
+
+Archivo de salida (`canciones-quitadas-acordes/sin_acordes_La niña de tus ojos - Daniel Calveti (B).txt`):
 
 ```
 La niña de tus ojos
@@ -95,27 +77,18 @@ Daniel Calveti
 VERSO I X2
 Me viste a mi cuando nadie me vio
 Me amaste a mi cuando nadie me amo
-
-VERSO II X2
-Y me diste nombre yo soy tu niña
-La niña de tus ojos por que me amaste a mí
-
-PRE-CORO X2
-Me amaste a mí, Me amaste a mí,
-Me amaste a mí, Me amaste a mí
-
-CORO X 4
-Te amo más que a mi vida,
-te amo más que a mi vida,
-Te amo más que a mi vida, más
-
-VERSO II X2
-Y me diste nombre yo soy tu niña
-La niña de tus ojos por que me amaste a mí
-
-Me amaste a mí.
+...
 ```
 
-lo mismo hace con todos los archivos de texto que estén en:
+## Probado en
 
-canciones-a-quitar-acordes/
+- Debian 12
+
+## Notas adicionales
+
+- El script mantiene la estructura de párrafos original, preservando las líneas en blanco entre secciones.
+- Se eliminan completamente las líneas que solo contienen acordes.
+- Los nombres de los archivos de salida tendrán el prefijo "sin_acordes_" seguido del nombre original del archivo.
+
+---
+Dios les bendiga
