@@ -2,8 +2,8 @@ import os
 import re
 
 def remove_chords(content):
-    # Patrón actualizado para identificar acordes (incluyendo F#m y C#m)
-    chord_pattern = r'\b[A-G](#m?|b|m|dim|aug|maj|min|sus|bm|add)?[0-9]?(?:\s|$)'
+    # Patrón para identificar acordes (incluyendo bemoles y sostenidos)
+    chord_pattern = r'\b[A-G](#|b|m|dim|aug|maj|min|sus|bm|add)?[0-9]?(?:\s|$)'
     
     # Dividir el contenido en líneas
     lines = content.split('\n')
