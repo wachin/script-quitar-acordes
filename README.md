@@ -20,7 +20,7 @@ python3 remove_chords.py
 
 así como se ve en al siguiente imagen:
 
-![](vx_images/11653823289001.png)
+![](src/vx_images/20240730-233639-terminal-abierta-en-la-carpeta-del-codigo.png)
 
 No tiene interfaz gráfica.
 
