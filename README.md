@@ -4,9 +4,7 @@ Tengo muchos acordes con letras de alabanza en formato de texto en el siguiente 
 
 [https://github.com/wachin/Cancionero](https://github.com/wachin/Cancionero)
 
-y para hacer cancioneros solo con las letras para imprimirlos he hecho esta solución para no tener que estar quitandole linea por linea los acordes. Tal vez alguien pense y porque mejor no uso los que puedo encontrar en internet, bueno porque muchas veces esas letras tienen fallas y estas ya están correjidas.
-
-El siguiente es un Script en Python para quitar acordes de guitarra de varios archivos de texto que estén en una carpeta.
+y para hacer cancioneros solo con las letras para imprimirlos he hecho esta solución para no tener que estar quitandole linea por linea los acordes. Tal vez alguien piense y por qué mejor no uso los que puedo encontrar en internet? bueno porque muchas veces esas letras tienen fallas y estas ya están corregidas.
 
 ## Requerimientos
 
@@ -26,7 +24,7 @@ así como se ve en al siguiente imagen:
 
 No tiene interfaz gráfica.
 
-Por cierto en MX Linux hay una manera de ejecutarlo solo dando clic derecho pues MX Linux trae un lanzador para python
+Por cierto, en MX Linux hay una manera de ejecutarlo solo dando clic derecho pues MX Linux trae un lanzador para python
 
  El script procesará automáticamente todos los archivos de texto (.txt) en la carpeta `canciones-a-quitar-acordes` y guardará las versiones sin acordes en la carpeta `canciones-quitadas-acordes`.
 
@@ -91,7 +89,7 @@ Me amaste a mi cuando nadie me amo
 
 ## Probado en
 
-- Debian 12
+- Debian 12, MX Linux 23
 
 ## Notas adicionales
 
