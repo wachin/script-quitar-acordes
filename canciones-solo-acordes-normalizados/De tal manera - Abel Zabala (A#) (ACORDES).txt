@@ -1,48 +1,65 @@
+De tal manera
+Intro:
 F#m D E A D E
+
+VERSO
 A E
 D F#m E
 A E
 D E A
+
 A E
 D F#m E
 A E
 D E A
+
+CORO
 F#m E A
 F#m E A
 F#m E D
 E D
+
 E F#m E A
-F#m E A
-F#m E D
-E
+  F#m E A
+  F#m E D
+        E
 D E A E
+
+VERSO
 A E
 D F#m E
 A E
 D E A
+
 A E
 D F#m E
 A E
 D E A
+
+CORO
 F#m E A
 F#m E A
 F#m E D
 E D
+
 E F#m E A
-F#m E A
-F#m E D
-E
+  F#m E A
+  F#m E D
+        E
 D E F#m D A E
 F#m D A E
-F#
+    F#
+
+(Coro subido de tono)
 G#m F# B
 G#m F# B
 G#m F# E
-F# E
+    F# E
+
 F# G#m F# B
-G#m F# B
-G#m F# E
-F#
+   G#m F# B
+   G#m F# E
+         F#
 E F# E F#
 G#m E
 F# B
