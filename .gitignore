@@ -1,0 +1,25 @@
+# Ignorar archivos de bloqueo de WPS Office
+.~lock.*
+
+# Ignorar archivos de bloqueo de LibreOffice
+.~lock.*
+
+# Ignorar archivos temporales de WPS Office
+*.bak
+*.swp
+*.tmp
+
+# Ignorar archivos temporales de LibreOffice
+*.~*
+
+# Ignorar archivos de configuración de editor de texto Kate
+*~
+
+# Ignorar archivos de caché de los editores
+*.odt~
+*.docx~
+
+# Ignorar cualquier otro archivo temporal
+*.bak
+*.swp
+
