@@ -1,0 +1,29 @@
+
+INTRO x2
+Dm A# F C
+
+VERSO x2
+Dm A#
+F C
+Dm A#
+F
+C
+
+SOLO
+Dm A# F C
+
+PRE-CORO
+Dm C A#
+Dm C A#
+Dm C A#
+Dm C A#
+F C
+
+CORO
+Dm
+A#
+F C
+Dm
+A#
+F C
+Dm A# F C
