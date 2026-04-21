@@ -1,14 +1,20 @@
 D A F#m E
+
 D A F#m
 E
 D A F#m
 E D E D E
+
+
 A E
 D A
 F#m E
 A E
 D A
 F#m E
+
+
+
 D A F#m E
 D A F#m
 E
@@ -16,6 +22,8 @@ D A F#m
 E D E D E
 D A E F#m
 D A E F#m
+
+
 D A E F#m
 D A E F#m
 D A E F#m

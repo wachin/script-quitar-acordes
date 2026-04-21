@@ -58,7 +58,7 @@ def process_files(input_folder, output_folder):
 
 # Carpetas de entrada y salida
 input_folder = 'canciones-a-remover-acordes'
-output_folder = 'canciones-quitados-acordes'
+output_folder = 'canciones-solo-letras'
 
 # Ejecutar el procesamiento
 process_files(input_folder, output_folder)
