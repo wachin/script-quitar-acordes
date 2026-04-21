@@ -17,13 +17,13 @@ de un Dios que salva
 [Coro]
  A                 E
 Cristo puede mover montes
-			D      A 
+			D      A
 solo Dios puede salvar
 		 F#m     E
 mi Dios puede salvar
 A                        E
 por siempre autor de salvación
-		  D         A 
+		  D         A
 Jesús la muerte venció
 	   F#m       E
 El la muerte venció
@@ -44,7 +44,7 @@ a Ti me rindo
 [Coro x2]
 
 [Solo]
-D A E  F#m  
+D A E  F#m
 D A E  F#m
 
 [Puente]
@@ -54,8 +54,8 @@ D            A          E      F#m
 por la gloria de tu majestad Jesús
 D            A            E       F#m
 En la tierra tu luz brillará Cantamos
-D            A          E     
-por la gloria de tu majestad 
+D            A          E
+por la gloria de tu majestad
 
 [Coro x2]
 
