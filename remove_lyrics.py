@@ -11,7 +11,7 @@ def extract_chords(content):
     # Lista para almacenar las líneas que contienen mayoritariamente acordes
     chord_lines = []
 
-    for line in lines:
+    for line in lines: 
         # Si la línea está vacía, la ignoramos
         if not line.strip():
             continue
@@ -29,7 +29,7 @@ def extract_chords(content):
 
 def normalize_chord_spacing(content):
     # Dividir el contenido en líneas
-    lines = content.split('\n')
+    lines = content.split('\n') # Dividir el contenido en líneas
 
     # Lista para almacenar las líneas normalizadas
     normalized_lines = []
@@ -74,4 +74,9 @@ input_folder = 'canciones-a-remover-letras'
 output_folder = 'canciones-solo-acordes'
 
 # Ejecutar el procesamiento
-process_files(input_folder, output_folder)
+# Process files from input folder and save results to output folder
+# This function likely handles file operations such as reading, processing, and writing
+process_files(input_folder, output_folder)  # Call the function with input and output folder paths
+
+
+# función que suma dos números
