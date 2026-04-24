@@ -37,8 +37,7 @@ Mientras haya aliento en mi
       D     E        A
 Dios haz tu obra en mi
 [Coro, 2da vuelta]
-A   E   Bm  D E A
-
+A   E   Bm  D E  A
     E   Bm  D E  D E
 
 [Verso]
@@ -53,14 +52,23 @@ F#m  E A  G D E
 
 [Coro, 1ra vuelta]
 A   E   Bm  D E  A
-
     E   Bm  D E  A
-
 [Coro, 2da vuelta]
-A   E   Bm  D E  A
+    E   Bm  D E  A
+    E   Bm  D E  D E C#m F#m
 
-    E   Bm  D E  D E
-
-[Intro]
+[Instrumental intermedio x9]
 D E C#m F#m
-D E C#m D
+
+[Coro, 1ra vuelta]
+A   E   Bm  D E  A
+    E   Bm  D E  A
+[Coro, 2da vuelta]
+    E   Bm  D E  A
+    E   Bm  D E  A
+[Coro, 2da vuelta]
+    E   Bm  D E  A
+    E   Bm  D E  D E C#m F#m
+
+[Fin]
+D E C#m F#m
