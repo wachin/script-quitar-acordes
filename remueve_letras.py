@@ -70,7 +70,7 @@ def process_files(input_folder, output_folder):
             print(f"Procesado: {filename}")
 
 # Carpetas de entrada y salida
-input_folder = 'canciones-a-extraer-acordes'
+input_folder = 'canciones-a-remover-letras'
 output_folder = 'canciones-solo-acordes'
 
 # Ejecutar el procesamiento
