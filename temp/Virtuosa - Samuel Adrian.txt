@@ -1,6 +1,12 @@
 Virtuosa
 Samuel Adrian
 
+Acordes
+Cadd9   x32033
+Em7     022033
+G/B     x20033
+D/F#    2x0230
+
 [Verso I]
    G                      Em7
 Dicen que son pocas y me consta

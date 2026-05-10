@@ -12,10 +12,10 @@ y para hacer cancioneros solo con las letras para imprimirlos he hecho esta solu
 
 ## Uso
 
-El programa se ejecuta desde la terminal de la siguiente manera:
+El programa principal se ejecuta desde la terminal de la siguiente manera:
 
 ```
-python3 remove_chords.py
+python3 remueve_acordes--Y_corchetes_a_comenratios_de_Holyrics.py
 ```
 
 así como se ve en al siguiente imagen:
@@ -26,41 +26,50 @@ No tiene interfaz gráfica.
 
 Por cierto, en MX Linux hay una manera de ejecutarlo solo dando clic derecho pues MX Linux trae un lanzador para python
 
- El script procesará automáticamente todos los archivos de texto (.txt) en la carpeta `canciones-a-quitar-acordes` y guardará las versiones sin acordes en la carpeta `canciones-quitadas-acordes`.
+ El script procesará automáticamente todos los archivos de texto (.txt) en la carpeta `canciones-a-remover-acordes` y guardará las versiones sin acordes en la carpeta `canciones-solo-letras-Holyrics`.
 
 ## Funcionamiento detallado
 
 El script utiliza expresiones regulares para identificar y eliminar los acordes. El patrón utilizado es:
 
 ```python
-chord_pattern = r'\b[A-G](#m?|b|m|dim|aug|maj|min|sus|bm|add)?[0-9]?(/[A-G](#|b)?)?(?:\s|$)'
+CHORD_PATTERN = r'\b[A-G](#|b)?(m|maj|min|dim|aug|sus|add)?[0-9]?(?!\w)'
 ```
+
+El script utiliza la lógica del programa `chord_autoscroll.py` para detectar líneas de acordes. Una línea se considera como de acordes si más del 50% de las palabras en ella coinciden con el patrón de acordes. Este enfoque evita eliminar letras del texto que coincidan con el patrón de acordes.
 
 Explicación del patrón:
 
 - `\b`: Indica el inicio de una palabra.
 - `[A-G]`: Coincide con cualquier nota musical (A, B, C, D, E, F, G).
-- `(#m?|b|m|dim|aug|maj|min|sus|bm|add)?`: Coincide opcionalmente con modificadores de acordes:
-  - `#m?`: Sostenido, opcionalmente seguido de 'm' (menor).
-  - `b`: Bemol.
-  - `m`, `dim`, `aug`, `maj`, `min`, `sus`, `add`: Otros modificadores comunes.
+- `(#|b)?`: Coincide opcionalmente con sostenido (#) o bemol (b).
+- `(m|maj|min|dim|aug|sus|add)?`: Coincide opcionalmente con modificadores de acordes:
+  - `m`: Menor.
+  - `maj`: Mayor.
+  - `min`: Menor.
+  - `dim`: Disminuido.
+  - `aug`: Aumentado.
+  - `sus`: Suspendido.
+  - `add`: Añadido.
 - `[0-9]?`: Coincide opcionalmente con un número (para acordes como C7, G9, etc.).
-- `(/[A-G](#|b)?)?`: Coincide opcionalmente con acordes con bajo específico (como D/F#):
-  - `/`: La barra literal.
-  - `[A-G]`: La nota del bajo.
-  - `(#|b)?`: Sostenido o bemol opcional para la nota del bajo.
-- `(?:\s|$)`: Coincide con un espacio o el final de la línea.
+- `(?!\w)`: Asegura que después del acorde no haya un carácter de palabra (evita coincidencias parciales).
 
 Este patrón permite identificar una amplia variedad de acordes, incluyendo:
 - Acordes mayores y menores (C, Am)
 - Acordes con sostenidos y bemoles (C#, Bb)
 - Acordes con séptimas y otras extensiones (C7, Gmaj7)
-- Acordes con bajo específico (D/F#)
 - Otras variaciones comunes (Csus, Dadd9)
+
+El script también convierte las etiquetas de sección entre corchetes a comentarios de Holyrics:
+- `[Verso]` → `//Verso`
+- `[Coro]` → `//Coro`
+- `[Puente]` → `//Puente`
+
+Esto facilita la importación de las letras en Holyrics.
 
 ## Ejemplo
 
-Archivo de entrada (`canciones-a-quitar-acordes/La niña de tus ojos - Daniel Calveti (B).txt`):
+Archivo de entrada (`canciones-a-remover-acordes/La niña de tus ojos - Daniel Calveti (B).txt`):
 
 ```
 La niña de tus ojos
@@ -75,7 +84,7 @@ Me amaste a mi cuando nadie me amo
 ...
 ```
 
-Archivo de salida (`canciones-quitadas-acordes/sin_acordes_La niña de tus ojos - Daniel Calveti (B).txt`):
+Archivo de salida (`canciones-solo-letras-Holyrics/sin_acordes La niña de tus ojos - Daniel Calveti (B).txt`):
 
 ```
 La niña de tus ojos
@@ -87,6 +96,29 @@ Me amaste a mi cuando nadie me amo
 ...
 ```
 
+Otro ejemplo con etiquetas de sección:
+
+Archivo de entrada:
+
+```
+[Verso]
+G   D
+Cristo nos ama
+Em   C
+tanto que su vida dió
+G
+por mi
+```
+
+Archivo de salida:
+
+```
+//Verso
+Cristo nos ama
+tanto que su vida dió
+por mi
+```
+
 ## Probado en
 
 - Debian 12, MX Linux 23
@@ -94,8 +126,10 @@ Me amaste a mi cuando nadie me amo
 ## Notas adicionales
 
 - El script mantiene la estructura de párrafos original, preservando las líneas en blanco entre secciones.
-- Se eliminan completamente las líneas que solo contienen acordes.
-- Los nombres de los archivos de salida tendrán el prefijo "sin_acordes_" seguido del nombre original del archivo.
+- Se eliminan completamente las líneas que son identificadas como líneas de acordes (más del 50% de las palabras coinciden con el patrón de acordes).
+- Los nombres de los archivos de salida tendrán el prefijo "sin_acordes " seguido del nombre original del archivo.
+- El script convierte las etiquetas de sección entre corchetes a comentarios de Holyrics (por ejemplo, `[Verso]` → `//Verso`).
+- El script utiliza la lógica del programa `chord_autoscroll.py` para detectar líneas de acordes, lo que evita eliminar letras del texto que coincidan con el patrón de acordes.
 
 ---
 Dios les bendiga

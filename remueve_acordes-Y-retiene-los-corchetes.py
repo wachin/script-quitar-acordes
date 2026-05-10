@@ -2,38 +2,10 @@ import os
 import re
 
 # ============================================================
-# RECONOCIMIENTO DE ACORDES AVANZADOS
+# RECONOCIMIENTO DE ACORDES
 # ============================================================
-#
-# Ejemplos admitidos:
-# C, Dm, F#, Bb, Cmaj7, F#m7, G7, Dsus4, Asus2, Cadd9,
-# E/G#, D/F#, Bbmaj7, Gm11, C7#9, F#7b9, Eaug, Bdim, A6,
-# Em(add9), Dmaj9/F#
-#
-CHORD_REGEX = r"""
-^
-[A-G]                    # Nota base
-(?:\#|b)?                # Alteración opcional: # o b
-
-(?:                      # Calidad/tipo opcional
-    maj|min|dim|aug|sus|add|m
-)?
-
-(?:                      # Extensión numérica opcional
-    2|4|5|6|7|9|11|13
-)?
-
-(?:                      # Alteraciones/extensiones extra opcionales
-    (?:\#|b)?(?:5|9|11|13)
-)*
-
-(?:\([^)]+\))?           # Cosas como (add9), (no3), etc.
-
-(?:/[A-G](?:\#|b)?)?     # Bajo opcional: /F#, /Bb
-$
-"""
-
-CHORD_TOKEN = re.compile(CHORD_REGEX, re.VERBOSE | re.IGNORECASE)
+# Patrón de acordes para detectar líneas de acordes (usando la lógica de chord_autoscroll.py)
+CHORD_PATTERN = r'\b[A-G](#|b)?(m|maj|min|dim|aug|sus|add)?[0-9]?(?!\w)'
 
 # Líneas como [Intro], [Coro x2], [Puente 3]
 SECTION_LINE = re.compile(r'^\s*\[[^\]]+\]\s*$')
@@ -44,57 +16,17 @@ PLAIN_TITLE_LINE = re.compile(
     re.IGNORECASE
 )
 
-def normalize_token(token):
+def is_chord_line(line):
     """
-    Limpia puntuación al inicio/final que a veces aparece pegada.
+    Determina si una línea es una línea de acordes.
+    Usa la lógica de chord_autoscroll.py: considera la línea como acorde si más del 50% de las palabras coinciden con el patrón de acordes.
     """
-    return token.strip().strip('.,;:¡!¿?"\'`´')
-
-def is_chord_token(token):
-    token = normalize_token(token)
-    if not token:
+    words = line.split()
+    if not words:
         return False
-    return bool(CHORD_TOKEN.match(token))
-
-def is_chord_only_line(line):
-    """
-    Devuelve True si la línea contiene únicamente acordes.
-    Ejemplos:
-        D A F#m E
-        D/F#   G   A   Bm7
-        Cmaj7  G/B  Am7  F
-    """
-    stripped = line.strip()
-    if not stripped:
-        return False
-
-    tokens = stripped.split()
-    if not tokens:
-        return False
-
-    return all(is_chord_token(token) for token in tokens)
-
-def remove_inline_chords(line):
-    """
-    Elimina acordes dentro de una línea.
-    Conserva el texto normal.
-    """
-    tokens = re.split(r'(\s+)', line)  # conserva espacios
-    cleaned = []
-
-    for token in tokens:
-        if token.isspace():
-            cleaned.append(token)
-            continue
-
-        if is_chord_token(token):
-            continue
-
-        cleaned.append(token)
-
-    result = ''.join(cleaned).strip()
-    result = re.sub(r'[ \t]+', ' ', result)
-    return result
+    matches = [bool(re.fullmatch(CHORD_PATTERN, word)) for word in words]
+    # Considera la línea como acorde si más del 50% de las palabras coinciden con el patrón de acordes
+    return sum(matches) > len(words) / 2
 
 def remove_chords(content):
     lines = content.splitlines()
@@ -118,15 +50,12 @@ def remove_chords(content):
             cleaned_lines.append(stripped)
             continue
 
-        # Si es una línea solo de acordes, omitirla
-        if is_chord_only_line(line):
+        # Si es una línea de acordes, omitirla
+        if is_chord_line(stripped):
             continue
 
-        # Quitar acordes incrustados
-        cleaned_line = remove_inline_chords(line)
-
-        if cleaned_line:
-            cleaned_lines.append(cleaned_line)
+        # Mantener la línea tal como está
+        cleaned_lines.append(stripped)
 
     return '\n'.join(cleaned_lines)
 
