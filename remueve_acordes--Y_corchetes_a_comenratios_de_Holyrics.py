@@ -83,7 +83,7 @@ def process_files(input_folder, output_folder):
 
 # Carpetas
 input_folder = 'canciones-a-remover-acordes'
-output_folder = 'canciones-solo-letras-Holyrics'
+output_folder = 'canciones-solo-letras-comentarios-Holyrics'
 
 # Ejecutar
 process_files(input_folder, output_folder)
