@@ -8,33 +8,44 @@ def extract_chords(content):
     # Dividir el contenido en líneas
     lines = content.split('\n')
 
-    # Lista para almacenar las líneas que contienen mayoritariamente acordes
-    chord_lines = []
+    # Lista para almacenar las líneas procesadas
+    result_lines = []
 
-    for line in lines: 
-        # Si la línea está vacía, la ignoramos
+    for line in lines:
+        # Si la línea está vacía, la conservamos (preserva saltos de línea entre secciones)
         if not line.strip():
+            result_lines.append(line)
+            continue
+
+        # Si la línea contiene un encabezado de sección entre corchetes, la conservamos intacta
+        if re.match(r'^\s*\[.*?\]\s*$', line):
+            result_lines.append(line)
             continue
 
         # Contar los caracteres que coinciden con el patrón de acordes
         matches = re.findall(chord_pattern, line)
-        total_chord_chars = sum(len(match) for match in matches)  # match contiene el texto del acorde
+        total_chord_chars = sum(len(match) for match in matches)
 
         # Si más del 50% de la línea corresponde a acordes, conservarla
-        if total_chord_chars >= 0.5 * len(line.replace(' ', '')):  # Ignorar espacios para el cálculo
-            chord_lines.append(line)
+        if total_chord_chars >= 0.5 * len(line.replace(' ', '')):
+            result_lines.append(line)
 
-    # Unir las líneas de acordes en un solo string
-    return '\n'.join(chord_lines)
+    # Unir las líneas procesadas en un solo string
+    return '\n'.join(result_lines)
 
 def normalize_chord_spacing(content):
     # Dividir el contenido en líneas
-    lines = content.split('\n') # Dividir el contenido en líneas
+    lines = content.split('\n')
 
     # Lista para almacenar las líneas normalizadas
     normalized_lines = []
 
     for line in lines:
+        # Si la línea es un encabezado de sección entre corchetes, la dejamos intacta
+        if re.match(r'^\s*\[.*?\]\s*$', line):
+            normalized_lines.append(line)
+            continue
+
         # Quitar espacios al inicio y reducir múltiples espacios entre acordes a uno solo
         normalized_line = re.sub(r'\s+', ' ', line.strip())
         normalized_lines.append(normalized_line)
@@ -74,9 +85,4 @@ input_folder = 'canciones-a-remover-letras'
 output_folder = 'canciones-solo-acordes'
 
 # Ejecutar el procesamiento
-# Process files from input folder and save results to output folder
-# This function likely handles file operations such as reading, processing, and writing
-process_files(input_folder, output_folder)  # Call the function with input and output folder paths
-
-
-# función que suma dos números
+process_files(input_folder, output_folder)
