@@ -9,6 +9,21 @@ y para hacer cancioneros solo con las letras para imprimirlos he hecho esta solu
 ## Requerimientos
 
 - Python 3.x
+- `chardet` para detectar archivos de texto guardados con codificaciones distintas, por ejemplo archivos creados en Windows.
+
+En Debian, MX Linux o Ubuntu:
+
+```
+sudo apt install python3-chardet
+```
+
+En Windows o macOS:
+
+```
+python -m pip install chardet
+```
+
+Si `chardet` no está instalado, los scripts todavía intentan leer los archivos con codificaciones comunes como UTF-8, Windows-1252 e ISO-8859-1.
 
 ## Uso
 
